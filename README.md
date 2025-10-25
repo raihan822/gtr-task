@@ -145,11 +145,6 @@ The `StockVisualizer` class can:
 * Show daily trading volume.
 
 ---
-
-## ⚡ Author
-
-Md. Raihan Uddin Sarker
-
 ---
 
 
@@ -182,9 +177,7 @@ A FastAPI-powered backend and toolkit for Samsung phone searching, spec comparis
 ├── _4_rag.py       # Retrieval and ranking agent (search, best battery, etc)
 ├── _5_agents.py    # Review/LLM agent interface (OpenAI/Groq)
 ├── main.py         # FastAPI app exposing /ask
-├── requirements.txt
-├── (scraper.py)    # (Optional: GSMArena/spec scraping utility)
-└── README.md
+└── (_3_scraper.py)    # (GSMArena/spec scraping utility)
 ```
 
 ***
@@ -213,8 +206,8 @@ A FastAPI-powered backend and toolkit for Samsung phone searching, spec comparis
    python _2_db.py
    ```
 
-5. **(Optional) Scrape data:**  
-   Populate your database using your `scraper.py` or import your phones table.
+5. **Scrape data:**  
+   Populate database using `_3_scraper.py`
 
 6. **Set your OpenAI or Groq key (for LLM features):**
    ```
@@ -285,10 +278,6 @@ Sample phones table fields:
 ***
 
 ## 📝 FAQ / Tips
-
-- **Model not found:** Make sure your question uses actual DB model names or substrings (`ilike` is used for partial match).
-- **Updating data:** Use SQL UPDATE queries provided to sync prices, or re-scrape and re-import the phones table.
-- **Extending:** To add more vendors, change your schema/data scraping scripts.
 - **Production:** Secure your API before web deployment; add environment-specific config and secrets management.
 
 ***
