@@ -1,6 +1,8 @@
+# _4_rag.py
 from _2_db import get_session
 from _1_models import Phone
 from sqlalchemy import select
+from sqlalchemy import func
 
 class RAG:
     def __init__(self):
@@ -9,7 +11,12 @@ class RAG:
     def get_specs(self, model_name):
         session = get_session()
         try:
-            stmt = select(Phone).where(Phone.model_name.ilike(f"%{model_name}%"))
+            stmt = select(Phone).where(
+                func.replace(func.lower(Phone.model_name), ' ', '').like(
+                    f"%{model_name.lower().replace(' ', '').replace('-', '')}%")
+            )
+
+            # stmt = select(Phone).where(Phone.model_name.ilike(f"%{model_name}%"))
             result = session.execute(stmt).scalars().all()
 
             out = []

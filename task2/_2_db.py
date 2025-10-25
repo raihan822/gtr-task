@@ -1,4 +1,4 @@
-# db.py (SQLAlchemy 2.0+ style)
+# _2_db.py (SQLAlchemy 2.0+ style)
 # connects the db:
 import os
 from sqlalchemy import create_engine, select
