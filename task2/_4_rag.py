@@ -1,6 +1,6 @@
-# rag.py
-from db import get_session
-from models import Phone
+from _2_db import get_session
+from _1_models import Phone
+from sqlalchemy import select
 
 class RAG:
     def __init__(self):
@@ -9,9 +9,9 @@ class RAG:
     def get_specs(self, model_name):
         session = get_session()
         try:
-            q = session.query(Phone).filter(Phone.model_name.ilike(f"%{model_name}%"))
-            result = q.all()
-            # return list of dicts (could be >1 if multiple variants)
+            stmt = select(Phone).where(Phone.model_name.ilike(f"%{model_name}%"))
+            result = session.execute(stmt).scalars().all()
+
             out = []
             for p in result:
                 out.append({
@@ -32,9 +32,13 @@ class RAG:
     def find_best_battery_under(self, price_limit):
         session = get_session()
         try:
-            q = session.query(Phone).filter(Phone.price_usd != None).filter(Phone.price_usd <= price_limit)
-            q = q.order_by(Phone.battery.desc().nullslast())
-            phone = q.first()
+            stmt = (
+                select(Phone)
+                .where(Phone.price_usd != None)
+                .where(Phone.price_usd <= price_limit)
+                .order_by(Phone.battery.desc().nullslast())
+            )
+            phone = session.execute(stmt).scalars().first()
             if not phone:
                 return None
             return {

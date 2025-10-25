@@ -1,7 +1,7 @@
 # main.py
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from agents import DataExtractor, ReviewGenerator
+from _5_agents import DataExtractor, ReviewGenerator
 import re
 
 app = FastAPI(title='Samsung Phone Advisor')
@@ -19,7 +19,6 @@ class AskResponse(BaseModel):
 
 def parse_question(q: str):
     q_low = q.lower()
-    # simple heuristics
     # 1) Compare X and Y
     m = re.search(r'compare\s+(.*?)\s+and\s+(.*)', q_low)
     if m:

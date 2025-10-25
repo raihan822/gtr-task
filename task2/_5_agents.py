@@ -1,9 +1,9 @@
-# agents.py
+# _5_agents.py
 import os
 import openai
-from rag import RAG
+from _4_rag import RAG
 
-openai.api_key = os.getenv('OPENAI_API_KEY')
+openai.api_key = os.getenv('GROQ_API_KEY')
 
 rag = RAG()
 
@@ -21,7 +21,7 @@ class DataExtractor:
 
 
 class ReviewGenerator:
-    def __init__(self, model_name='gpt-4-llm-or-other'):
+    def __init__(self, model_name='llama-3.1-8b-instant'):
         self.model_name = model_name
 
     def generate_comparison(self, a_name, a_specs, b_name, b_specs, focus=None):
@@ -33,7 +33,7 @@ class ReviewGenerator:
         prompt += "Give a concise conclusion and recommendation. Use plain language."
 
         response = openai.ChatCompletion.create(
-            model='gpt-4',
+            model='llama-3.1-8b-instant',
             messages=[
                         {"role": "system", "content": "You are a phone review assistant."},
                         {"role": "user", "content": prompt}
@@ -45,11 +45,11 @@ class ReviewGenerator:
         return text
 
     def generate_recommendation_from_list(self, phones_list, criteria='battery'):
-        prompt = "You are a helpful tech reviewer. Given this list of phones and their specs, recommend the best one based on {criteria}.\n\n"
+        prompt = f"You are a helpful tech reviewer. Given this list of phones and their specs, recommend the best one based on {criteria}.\n\n"
         prompt += str(phones_list)
         prompt += "\nGive a short recommendation and reason."
         response = openai.ChatCompletion.create(
-            model='gpt-4',
+            model='llama-3.1-8b-instant',
             messages=[{"role":"user","content":prompt}],
             max_tokens=200,
             temperature=0.2

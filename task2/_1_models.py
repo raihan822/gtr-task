@@ -1,6 +1,8 @@
 # models.py
+# makes the table:
 from sqlalchemy import Column, Integer, String, Numeric, Date, Text, DateTime
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import declarative_base
+
 import datetime
 
 Base = declarative_base()
