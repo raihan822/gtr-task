@@ -1,0 +1,12 @@
+yfinance
+pandas
+numpy
+fastapi
+uvicorn
+sqlalchemy
+psycopg2-binary
+requests
+beautifulsoup4
+openai
+pydantic
+python-dotenv
