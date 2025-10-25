@@ -18,4 +18,4 @@ class Phone(Base):
     storage = Column(String)
     price_usd = Column(Numeric(10,2))
     source_url = Column(Text)
-    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow) #gp

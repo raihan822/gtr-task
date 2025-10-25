@@ -2,7 +2,7 @@
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from models import Base, Phone
+from _1_models import Base, Phone
 
 DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://postgres:password@localhost:5432/samsung_advisor')
 
