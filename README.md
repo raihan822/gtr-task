@@ -1,7 +1,4 @@
 # Task 1 -----
-Absolutely! Here’s a **professional, clear, and structured README** for your GitHub project on the SMA Crossover Algorithmic Trading. It includes project description, usage, visualization, and notes.
-
----
 
 # Algorithmic Trading: SMA Crossover Strategy
 
